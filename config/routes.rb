@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   get '/users', to: 'users#index', as: 'users'
   get '/signup', to: 'users#new', as: 'signup'
+  post '/users', to: 'users#create'
 end
