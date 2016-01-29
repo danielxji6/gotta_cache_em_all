@@ -7,8 +7,8 @@
 <p>Coords: <%= @event.coords %></p>
 <p>
   Level Range:
-  <%= @event.level_mid - @event.level_range%> to
-  <%= @event.level_mid + @event.level_range%>
+  <%= @event.level_min %> to
+  <%= @event.level_min + @event.level_range%>
 </p>
 
 <%= link_to "Edit", edit_event_path %>

@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160129182345) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "hash_data"
-    t.integer  "level_mid"
+    t.integer  "level_min"
     t.integer  "level_range"
   end
 
