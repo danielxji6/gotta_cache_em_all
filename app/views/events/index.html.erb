@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Events</h3><hr>
+
+<% @events.each do |event| %>
+  <p>Pokemon name: <%= link_to event.name, event_path(event) %></p>
+  <p>Type: <%= event.category %></p>
+  <p>Coords: <%= event.coords %></p>
+  <hr>
+<% end %>
+
+<%= link_to 'New Events', new_event_path %>
