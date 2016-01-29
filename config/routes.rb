@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   post '/sessions', to: 'sessions#create'
 
   get '/events', to: 'events#index'
-  get '/events/new', to: 'events#new'
+  get '/events/new', to: 'events#new', as: 'new_event'
   post '/events', to:'events#create'
   get '/events/:id', to: 'events#show', as: 'event'
+  get '/events/:id/edit', to: 'events#edit', as: 'edit_event'
+  patch '/events/:id', to: 'events#update'
 
 end

@@ -1,0 +1,10 @@
+<h3>Event:</h3>
+<h3><%= @event.name%></h3>
+
+<%= image_tag @event.image, size: "100"%><br>
+
+<p>Type: <%= @event.category %></p>
+<p>Coords: <%= @event.coords %></p>
+
+<%= link_to "Edit", edit_event_path %>
+<%= link_to "Back", events_path %>
