@@ -11,7 +11,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.hash_data = (@event.name + @event.coords + DateTime.now.strftime("%5N")).hash
+    @event.hash_data = set_hash_data
     if @event.save
       redirect_to @event
     else
@@ -41,6 +41,10 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :coords, :category, :image)
+  end
+
+  def set_hash_data
+    (@event.name + @event.coords + "WDI25").hash
   end
 
 end
