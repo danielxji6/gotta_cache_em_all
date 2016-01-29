@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129094336) do
+ActiveRecord::Schema.define(version: 20160129182345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20160129094336) do
     t.integer  "level_range"
   end
 
+  create_table "pokemons", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.integer  "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "pokemons", ["event_id"], name: "index_pokemons_on_event_id", using: :btree
+  add_index "pokemons", ["user_id"], name: "index_pokemons_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "full_name"
     t.string   "email"
@@ -37,4 +48,6 @@ ActiveRecord::Schema.define(version: 20160129094336) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "pokemons", "events"
+  add_foreign_key "pokemons", "users"
 end

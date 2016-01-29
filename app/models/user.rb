@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+	has_many :pokemons
 	has_secure_password
 
 	def self.confirm(params)

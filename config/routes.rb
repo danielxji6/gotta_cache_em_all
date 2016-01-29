@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   get '/events/:id/edit', to: 'events#edit', as: 'edit_event'
   patch '/events/:id', to: 'events#update'
 
+  
+
 end
