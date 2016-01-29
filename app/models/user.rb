@@ -7,10 +7,11 @@ class User < ActiveRecord::Base
 		@user.try(:authenticate, params[:password])
 	end
 
-	validates :full_name, :username, :email, :password, presence: true, length: {maximum: 255}
+	validates :full_name, :email, :password, presence: true, length: {maximum: 255}
+	validates :username, length: {in: 6..12, message: "must be between 6 and 12 characters"}
+	validates :password, length: { minimum: 3, message: "must be at least 3 characters" }
+	validates :email, :username, uniqueness: true 
 
-	validates :email, :username, uniqueness: true
-
-	validates :email, format: { with: /@/ }
+	validates :email, format: { with: /@/ }, length: { minimum: 6 }
 
 end

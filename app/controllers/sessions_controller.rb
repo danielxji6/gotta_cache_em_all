@@ -9,8 +9,10 @@ class SessionsController < ApplicationController
 		if @user 
 			login(@user)
 			redirect_to @user
+	    flash[:notice] = "Successfully logged in"
 		else
 			redirect_to login_path
+			flash[:error] = "Invalid credentials. Please try again."
 		end
 	end
 
