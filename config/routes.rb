@@ -17,4 +17,11 @@ Rails.application.routes.draw do
   get '/events/:id/edit', to: 'events#edit', as: 'edit_event'
   patch '/events/:id', to: 'events#update'
 
+  
+
+
+
+  get '/users/:user_id/pokemons', to: 'pokemons#index'
+  get '/users/:user_id/pokemons/:id', to: 'pokemons#show', as: 'pokemon'
+
 end
