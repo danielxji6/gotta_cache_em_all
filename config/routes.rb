@@ -19,4 +19,9 @@ Rails.application.routes.draw do
 
   
 
+
+
+  get '/users/:user_id/pokemons', to: 'pokemons#index'
+  get '/users/:user_id/pokemons/:id', to: 'pokemons#show', as: 'pokemon'
+
 end
