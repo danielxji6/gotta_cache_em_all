@@ -7,4 +7,10 @@ class User < ActiveRecord::Base
 		@user.try(:authenticate, params[:password])
 	end
 
+	validates :full_name, :username, :email, :password, presence: true, length: {maximum: 255}
+
+	validates :email, :username, uniqueness: true
+
+	validates :email, format: { with: /@/ }
+
 end
