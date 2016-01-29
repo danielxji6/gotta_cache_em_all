@@ -11,6 +11,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.hash_data = (@event.name + @event.coords + DateTime.now.strftime("%5N")).hash
     if @event.save
       redirect_to @event
     else
