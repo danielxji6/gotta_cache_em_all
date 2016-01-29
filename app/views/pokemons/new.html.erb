@@ -1,0 +1,46 @@
+<p> <%= @event.name %> </p>
+<p> <%= @event.category %> </p>
+<p> <%= @event.level_min %> </p>
+
+
+<section id='catch-form' class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <%= form_for @user, url: "/catch", method: "post" do |f| %>
+        <fieldset>
+          <legend>Login</legend>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="username">User name</label>
+            <div class="col-md-8">
+              <%= f.text_field :username, required: true, class: "form-control" %><br>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Password</label>
+            <div class="col-md-8">
+              <%= f.password_field :password, required: true, class: "form-control" %><br>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="hash_data">Hash</label>
+            <div class="col-md-8">
+              <%= f.text_field :hash_data, required: true, value: @hash_data, class: "form-control" %><br>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-12">
+              <%= f.submit "Login", class: "btn btn-success" %>
+            </div>
+          </div>
+          
+        </fieldset>
+      <% end %>
+
+    </div>
+  </div>
+</section>

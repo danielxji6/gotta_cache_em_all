@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
   post '/sessions', to: 'sessions#create'
-
+  
   get '/events', to: 'events#index'
   get '/events/new', to: 'events#new', as: 'new_event'
   post '/events', to:'events#create'
@@ -23,5 +23,6 @@ Rails.application.routes.draw do
 
   get '/users/:user_id/pokemons', to: 'pokemons#index'
   get '/users/:user_id/pokemons/:id', to: 'pokemons#show', as: 'pokemon'
-
+  get '/catch/:hash_data', to: 'pokemons#new'
+  post '/catch', to: 'pokemons#create'
 end

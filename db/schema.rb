@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(version: 20160129182345) do
     t.string   "name"
     t.string   "category"
     t.string   "image"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "hash_data"
     t.integer  "level_min"
-    t.integer  "level_range"
+    t.integer  "level_max"
   end
 
   create_table "pokemons", force: :cascade do |t|
