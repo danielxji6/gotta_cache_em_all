@@ -30,6 +30,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Hirb to format data in rails console
 gem 'hirb'
 
+
+gem 'figaro'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
