@@ -21,9 +21,11 @@ ActiveRecord::Schema.define(version: 20160129094336) do
     t.string   "name"
     t.string   "category"
     t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "hash_data"
+    t.integer  "level_mid"
+    t.integer  "level_range"
   end
 
   create_table "users", force: :cascade do |t|
