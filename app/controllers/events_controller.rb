@@ -40,7 +40,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :coords, :category, :image, :level_min, :level_range)
+    params.require(:event).permit(:name, :coords, :category, :image, :level_min, :level_max)
   end
 
   def set_hash_data
