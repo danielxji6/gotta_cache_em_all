@@ -4,7 +4,7 @@ class CreatePokemons < ActiveRecord::Migration
       t.references :user, index: true, foreign_key: true
       t.references :event, index: true, foreign_key: true
       t.integer :level
-      t.imteger :team_position
+      t.integer :team_position
 
       t.timestamps null: false
     end
