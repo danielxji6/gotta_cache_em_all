@@ -1,4 +1,5 @@
-<p> <%= @event.name %> </p>
+<%= image_tag @event.image, size: "100"%><br>
+<h3> <%= @event.name %> </h3>
 <p> <%= @event.category %> </p>
 <p> <%= @event.level_min %> </p>
 
@@ -37,7 +38,7 @@
               <%= f.submit "Login", class: "btn btn-success" %>
             </div>
           </div>
-          
+
         </fieldset>
       <% end %>
 
