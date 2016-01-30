@@ -20,6 +20,8 @@ event = {
 	name: "Mew",
 	coords: "123,123",
 	category: "Phichic",
+	dex_number: 151,
+	description: "Mew. Mew. Mew.",
 	image: "http://orig05.deviantart.net/23ee/f/2012/166/3/8/151_mew_sprite_by_blaze33193-d53n2y9.png",
 	level_min: 10,
 	level_max: 20,
