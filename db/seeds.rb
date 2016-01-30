@@ -14,7 +14,8 @@ user = {
 	password: "123"
 }
 
-user1 = User.create(user)
+# user1 = User.create(user)
+user1 = User.first
 
 event = {
 	name: "Mew",
@@ -37,7 +38,7 @@ event = {
 	category: "electric",
 	dex_number: 25,
 	description: "pika, pika, pika",
-	image: "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwin2Lqm1tLKAhVKyGMKHehWBiIQjRwIAw&url=http%3A%2F%2Fwww.giantbomb.com%2Fpikachu%2F3005-145%2F&psig=AFQjCNFQTPAW14FbP8mGkHwaNbl5mtAjjA&ust=1454282413356541",
+	image: "http://vignette2.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest?cb=20140328192412",
 	level_min: 10,
 	level_max: 20,
 	hash_data: "123456"
@@ -46,15 +47,28 @@ event = {
 event2 = Event.create(event)
 
 
-pokemon = {
+pokemon1 = {
 	level: 15
 }
 
-poke2 = Pokemon.create(pokemon)
+pokemon2 = {
+	level: 20,
+	team_position: 1
+}
+
+pokemon3 = {
+	level: 30,
+	team_position: 2
+}
+
+poke1 = Pokemon.create(pokemon1)
+user1.pokemons << poke1
+event1.pokemons << poke1
+
+poke2 = Pokemon.create(pokemon2)
 user1.pokemons << poke2
 event2.pokemons << poke2
 
-
-poke1 = Pokemon.create(pokemon)
-user1.pokemons << poke1
-event1.pokemons << poke1
+poke3 = Pokemon.create(pokemon3)
+user1.pokemons << poke3
+event2.pokemons << poke3
