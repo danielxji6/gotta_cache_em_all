@@ -5,6 +5,8 @@ class CreateEvents < ActiveRecord::Migration
       t.string :name
       t.string :category
       t.string :image
+      t.integer :dex_number
+      t.text :description
 
       t.timestamps null: false
     end
