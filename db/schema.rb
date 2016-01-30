@@ -21,8 +21,10 @@ ActiveRecord::Schema.define(version: 20160129182345) do
     t.string   "name"
     t.string   "category"
     t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "dex_number"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "hash_data"
     t.integer  "level_min"
     t.integer  "level_max"
@@ -32,8 +34,9 @@ ActiveRecord::Schema.define(version: 20160129182345) do
     t.integer  "user_id"
     t.integer  "event_id"
     t.integer  "level"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "team_position"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "pokemons", ["event_id"], name: "index_pokemons_on_event_id", using: :btree
