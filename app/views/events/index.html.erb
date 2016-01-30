@@ -8,8 +8,14 @@
   <p>Coords: <%= event.coords %></p>
   <hr>
 <% end %>
+<div class='container'>
+	<div class='float_left'>
+		my profile stuffs
+	</div>
 
+	<div class='float_right'>
+		<iframe width="450" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJIQBpAG2ahYAR_6128GcTUEo&key=<%= ENV["GOOGLE_MAPS"] %>" ></iframe>
 
-<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJIQBpAG2ahYAR_6128GcTUEo&key=<%= ENV["GOOGLE_MAPS"] %>" ></iframe>
-
-<%= link_to 'New Events', new_event_path %>
+		<p><%= link_to 'New Events', new_event_path %></p>
+	</div>
+</div>

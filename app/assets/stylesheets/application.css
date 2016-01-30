@@ -14,3 +14,15 @@
  *= require_tree .
  *= require_self
  */
+
+.float_left{
+	position: relative;
+	display: inline-block;
+	float: left;
+}
+
+.float_right{
+	position: relative;
+	display: inline-block;
+	float: right;
+}
