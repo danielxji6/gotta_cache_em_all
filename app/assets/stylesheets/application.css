@@ -15,6 +15,22 @@
  *= require_self
  */
 
+.jumbotron{
+	background-image: url('poke_jumbotron.png');
+	background-color: black;
+	height: 350px;
+	width:100%;
+	background-repeat: no-repeat;
+
+}
+
+.jumbotron_text{
+	position: relative;
+	top: 220px;
+	left: 250px; 
+}
+
+
 .float_left{
 	position: relative;
 	display: inline-block;
