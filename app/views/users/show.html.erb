@@ -5,15 +5,20 @@
 	<div id='my_team' class="container">
 
 		<div class='row'>
-			<% @pokemons.each do |pokemon| %>
-			<% if pokemon.team_position %>
+			<% @team.each do |pokemon| %>
 				<div class='col-sm-2'>
 					<%= image_tag pokemon.event.image, size: "100"%><br>
 						<p><%= pokemon.event.name %></p>
 
 				</div>
 			<% end %>
-		<%end%>
+
+			<% @empty.times do |n| %>
+				<div class='col-sm-2'>
+					<%= image_tag "", size: "100"%><br>
+						<p>Empty</p>
+				</div>
+			<% end %>
 			
 		</div>
 	</div>

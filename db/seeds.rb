@@ -14,7 +14,7 @@ user = {
 	password: "123"
 }
 
-# user1 = User.create(user)
+user1 = User.create(user)
 user1 = User.first
 
 event = {
