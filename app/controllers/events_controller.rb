@@ -7,10 +7,32 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    loader = Poke::API::Loader.new("pokemon")
+    i = 1
+    @pokemons = []
+    while i <= 151
+      found_poke = loader.find(i)
+      @pokemons << [found_poke["national_id"], found_poke["name"]]
+      i += 1
+    end
   end
 
   def create
+    loader = Poke::API::Loader.new("pokemon")
+
+    poke_number = params[:event][:dex_number]
+    selected_poke = loader.find(poke_number)
+
+    categories = []
+    selected_poke["types"].each do |type|
+      categories << type["name"].capitalize 
+    end
+    categories = categories.join(", ")
+
     @event = Event.new(event_params)
+    @event.name = selected_poke["name"]
+    @event.category = categories
+    @event.image = "https://s3-eu-west-1.amazonaws.com/calpaterson-pokemon/#{poke_number}.jpeg"
     @event.hash_data = set_hash_data
     if @event.save
       redirect_to @event
@@ -40,7 +62,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :coords, :category, :image, :level_min, :level_max)
+    params.require(:event).permit(:dex_number, :coords, :level_min, :level_max)
   end
 
   def set_hash_data
