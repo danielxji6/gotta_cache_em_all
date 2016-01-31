@@ -7,6 +7,15 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    loader = Poke::API::Loader.new("pokemon")
+    i = 1
+    @pokemons = []
+    while i <= 151
+      found_poke = loader.find(i)
+      @pokemons << [found_poke["national_id"], found_poke["name"]]
+      p "FOUND THIS POKEMON: #{found_poke['name']}"
+      i += 1
+    end
   end
 
   def create
