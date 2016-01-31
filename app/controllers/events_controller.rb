@@ -13,7 +13,6 @@ class EventsController < ApplicationController
     while i <= 151
       found_poke = loader.find(i)
       @pokemons << [found_poke["national_id"], found_poke["name"]]
-      p "FOUND THIS POKEMON: #{found_poke['name']}"
       i += 1
     end
   end
