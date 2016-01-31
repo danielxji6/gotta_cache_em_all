@@ -20,6 +20,7 @@
         <ul class="nav navbar-nav">
         </ul>
         <ul class="nav navbar-nav navbar-right nav-pills">
+        <li role="presentation"><%= link_to "Home", root_path %></li>
           <% if current_user %>
             <li role="presentation"><%= link_to "Profile", user_path(session[:user_id]) %></li>
             <li role="presentation"><%= link_to "Logout", logout_path %></li>

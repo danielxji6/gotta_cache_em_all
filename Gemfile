@@ -36,6 +36,7 @@ gem 'poke-api', '~> 0.0.1'
 # gem 'pokegem', '~> 0.0.3'
 
 gem 'figaro'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
