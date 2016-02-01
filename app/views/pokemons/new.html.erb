@@ -3,6 +3,16 @@
 <p> <%= @event.category %> </p>
 <p> <%= @event.level_min %> </p>
 
+<% if current_user %>
+
+  <%= form_for @user, url: "/catch", method: "post" do |f| %>
+  <%= f.hidden_field :hash_data, required: true, value: @hash_data, class: "form-control" %>
+  <%= f.submit "Catch", class: "btn btn-primary" %>
+  <% end %>
+
+<% else %>
+
+<%= button_to "Create an account!", signup_path, method: "get", class: "btn btn-primary" %>
 
 <section id='catch-form' class="container">
   <div class="row">
@@ -39,3 +49,5 @@
     </div>
   </div>
 </section>
+
+<% end %>
