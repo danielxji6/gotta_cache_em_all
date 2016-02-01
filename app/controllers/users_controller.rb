@@ -28,7 +28,14 @@ class UsersController < ApplicationController
 			.select { |poke| poke.team_position }
 			.sort { |x, y| x.team_position <=> y.team_position}
 		@empty = 6 - @team.size
-		
+	end
+
+	def edit
+
+	end
+
+	def update
+
 	end
 
 
