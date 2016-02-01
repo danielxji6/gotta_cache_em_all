@@ -14,6 +14,8 @@ class PokemonsController < ApplicationController
 		@hash_data = params[:hash_data]
 		@user = User.new
 		@event = Event.find_by(hash_data: @hash_data)
+		# Stores the hash info into the session to redirect from users#new/users#create
+		session[:catch_data] = @hash_data
 	end
 
 	def create
@@ -51,6 +53,6 @@ class PokemonsController < ApplicationController
 			redirect_to catch_path(@event.hash_data)
 			flash[:error] = "Invalid user credentials. Please try again."
 		end
+		session[:catch_data] = nil
 	end
-
 end
