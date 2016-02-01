@@ -1,3 +1,6 @@
-<p> <%= @pokemon.event.name %> </p>
-<p> <%= @pokemon.event.category %> </p>
-<p> <%= @pokemon.level %> </p>
+<div class = 'display_pokemon'>
+<p> <%= image_tag @pokemon.event.image, size: "100"%></p>
+<p> <strong>Name: </strong> <%= @pokemon.event.name %> </p>
+<p> <strong>Type: </strong> <%= @pokemon.event.category %> </p>
+<p> <strong>Level: </strong> <%= @pokemon.level %> </p>
+</div>
