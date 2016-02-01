@@ -3,4 +3,5 @@
 <p> <strong>Name: </strong> <%= @pokemon.event.name %> </p>
 <p> <strong>Type: </strong> <%= @pokemon.event.category %> </p>
 <p> <strong>Level: </strong> <%= @pokemon.level %> </p>
+<p>	<%= link_to "Back", user_path(current_user), class: "btn btn-primary" %></p>
 </div>
