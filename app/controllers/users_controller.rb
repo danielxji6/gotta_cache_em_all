@@ -41,19 +41,24 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-		p params
-
-		poke1 = Pokemon.find_by_id(params[:team_poke])
+		poke1 = Pokemon.find_by_id(params[:team_poke]) || params[:empty_position]
 		poke2 = Pokemon.find_by_id(params[:backpack_poke])
 
-		poke2.team_position = poke1.team_position
-		poke1.team_position = nil
-
-		if poke1.save && poke2.save
-			respond_to do |format|
-	      format.json { head :ok }
-	    end
+		if params[:empty_position]
+			poke2.team_position = poke1
+			if poke2.save
+				respond_to do |format|
+					format.json { head :ok }
+				end
+			end
+		else
+			poke2.team_position = poke1.team_position
+			poke1.team_position = nil
+			if poke1.save && poke2.save
+				respond_to do |format|
+					format.json { head :ok }
+				end
+			end
 		end
 	end
 

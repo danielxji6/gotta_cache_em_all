@@ -41,7 +41,7 @@ event = {
 	image: "http://vignette2.wikia.nocookie.net/pokemon/images/0/0d/025Pikachu.png/revision/latest?cb=20140328192412",
 	level_min: 10,
 	level_max: 20,
-	hash_data: "123456"
+	hash_data: "654321"
 }
 
 event2 = Event.create(event)
