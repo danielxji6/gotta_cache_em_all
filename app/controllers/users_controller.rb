@@ -27,11 +27,14 @@ class UsersController < ApplicationController
 		@team = @pokemons
 			.select { |poke| poke.team_position }
 			.sort { |x, y| x.team_position <=> y.team_position}
-		@empty = 6 - @team.size
 	end
 
 	def edit
-
+		@user = User.find_by_id(params[:id])
+		@pokemons = @user.pokemons
+		@team = @pokemons
+			.select { |poke| poke.team_position }
+			.sort { |x, y| x.team_position <=> y.team_position}
 	end
 
 	def update
