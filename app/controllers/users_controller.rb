@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :set_user, only: [:show, :edit, :update]
+	before_action :set_user, only: [:show, :edit, :update, :delete_team]
 
 	def index
 		@users = User.all
@@ -60,6 +60,14 @@ class UsersController < ApplicationController
 				end
 			end
 		end
+	end
+
+	def delete_team
+		@user.pokemons.each do |pokemon|
+			pokemon.team_position = nil
+			pokemon.save
+		end
+		redirect_to edit_user_path(current_user)
 	end
 
 	private

@@ -1,6 +1,7 @@
 console.log("Load!");
 
-$(function() {
+var ready_team;
+ready_team = function() {
 
   $('#my_team .poke').click(function() {
     $('#my_team div').removeClass('switch');
@@ -33,5 +34,17 @@ $(function() {
       }
     });
   });
+
+  // $('#delete').click(function() {
+  //   location.reload();
+  // });
+};
+
+$(document).ready(ready_team);
+$(document).on('page:load', ready_team);
+
+
+$(function() {
+
 
 });
