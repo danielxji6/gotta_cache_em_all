@@ -24,6 +24,6 @@ Rails.application.routes.draw do
 
   get '/users/:user_id/pokemons', to: 'pokemons#index'
   get '/users/:user_id/pokemons/:id', to: 'pokemons#show', as: 'pokemon'
-  get '/catch/:hash_data', to: 'pokemons#new'
+  get '/catch/:hash_data', to: 'pokemons#new', as: 'catch'
   post '/catch', to: 'pokemons#create'
 end

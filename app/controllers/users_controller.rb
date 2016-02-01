@@ -15,7 +15,11 @@ class UsersController < ApplicationController
 		if @user.save
 			flash[:notice] = "Successfully created account!"
 			login(@user)
-			redirect_to @user
+			if session[:catch_data]
+				redirect_to catch_path(session[:catch_data])
+			else
+				redirect_to @user
+			end
 		else
 			flash[:error] = @user.errors.full_messages.join(", ")
 			redirect_to signup_path
