@@ -19,7 +19,8 @@ $(function() {
       dataType: "html",
       data: {
         team_poke: $('#my_team .switch').data("id"),
-        backpack_poke: $('#my_backpack .switch').data("id")
+        backpack_poke: $('#my_backpack .switch').data("id"),
+        empty_position: $('#my_team .switch').data("empty-id")
       },
       success: function(response) {
         console.log("Save!");
