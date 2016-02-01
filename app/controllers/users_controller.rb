@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	before_action :set_user, only: [:show, :edit, :update]
 
 	def index
 		@users = User.all
@@ -22,7 +23,6 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find_by_id(params[:id])
 		@pokemons = @user.pokemons
 		@team = @pokemons
 			.select { |poke| poke.team_position }
@@ -30,7 +30,6 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		@user = User.find_by_id(params[:id])
 		@pokemons = @user.pokemons
 		@team = @pokemons
 			.select { |poke| poke.team_position }
@@ -38,8 +37,16 @@ class UsersController < ApplicationController
 	end
 
 	def update
-
+		puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+		p params
+		# poke_one = params[:]
+		# redirect_to user_path(@user)
 	end
 
+	private
+
+	def set_user
+		@user = User.find_by_id(params[:id])
+	end
 
 end
