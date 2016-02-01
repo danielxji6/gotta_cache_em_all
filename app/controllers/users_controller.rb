@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	before_action :set_user, only: [:show, :edit, :update]
 
 	def index
 		@users = User.all
@@ -26,14 +27,40 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find_by_id(params[:id])
 		@pokemons = @user.pokemons
 		@team = @pokemons
 			.select { |poke| poke.team_position }
 			.sort { |x, y| x.team_position <=> y.team_position}
-		@empty = 6 - @team.size
-		
 	end
 
+	def edit
+		@pokemons = @user.pokemons
+		@team = @pokemons
+			.select { |poke| poke.team_position }
+			.sort { |x, y| x.team_position <=> y.team_position}
+	end
+
+	def update
+		puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+		p params
+
+		poke1 = Pokemon.find_by_id(params[:team_poke])
+		poke2 = Pokemon.find_by_id(params[:backpack_poke])
+
+		poke2.team_position = poke1.team_position
+		poke1.team_position = nil
+
+		if poke1.save && poke2.save
+			respond_to do |format|
+	      format.json { head :ok }
+	    end
+		end
+	end
+
+	private
+
+	def set_user
+		@user = User.find_by_id(params[:id])
+	end
 
 end

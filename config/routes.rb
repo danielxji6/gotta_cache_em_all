@@ -8,21 +8,19 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new', as: 'signup'
   post '/users', to: 'users#create'
   get '/users/:id', to: 'users#show', as: 'user'
+  get '/users/:id/edit', to: 'users#edit', as: 'edit_user'
+  patch '/users/:id', to: 'users#update'
 
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
   post '/sessions', to: 'sessions#create'
-  
+
   get '/events', to: 'events#index'
   get '/events/new', to: 'events#new', as: 'new_event'
   post '/events', to:'events#create'
   get '/events/:id', to: 'events#show', as: 'event'
   get '/events/:id/edit', to: 'events#edit', as: 'edit_event'
   patch '/events/:id', to: 'events#update'
-
-  
-
-
 
   get '/users/:user_id/pokemons', to: 'pokemons#index'
   get '/users/:user_id/pokemons/:id', to: 'pokemons#show', as: 'pokemon'
