@@ -1,5 +1,5 @@
-<h3>My Team</h3>
-<%= link_to "Delete Team", delete_team_path, id: "delete", class: "btn btn-danger"%>
+<h3>My Team <%= link_to "Delete Team", delete_team_path, id: "delete", class: "btn btn-danger"%></h3>
+
 <p hidden id="user_id"><%= @user.id%></p>
 <div id='my_team' class="container">
 	<div class='row'>
