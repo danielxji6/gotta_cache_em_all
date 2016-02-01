@@ -39,8 +39,18 @@ class UsersController < ApplicationController
 	def update
 		puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 		p params
-		# poke_one = params[:]
-		# redirect_to user_path(@user)
+
+		poke1 = Pokemon.find_by_id(params[:team_poke])
+		poke2 = Pokemon.find_by_id(params[:backpack_poke])
+
+		poke2.team_position = poke1.team_position
+		poke1.team_position = nil
+
+		if poke1.save && poke2.save
+			respond_to do |format|
+	      format.json { head :ok }
+	    end
+		end
 	end
 
 	private

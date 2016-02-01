@@ -22,7 +22,7 @@
 <div id="my_backpack"class="container">
 	<% @pokemons.each do |pokemon| %>
 		<% if !pokemon.team_position %>
-			<div class='poke col-md-2'>
+			<div class='poke col-md-2' data-id=<%= pokemon.id%>>
         <%= image_tag pokemon.event.image, size: "100" %><br>
 					<p><%= pokemon.event.name %></p>
 			</div>

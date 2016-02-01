@@ -16,13 +16,19 @@ $(function() {
     $.ajax({
       method: 'PATCH',
       url: '/users/' + $('#user_id').text(),
+      dataType: "html",
       data: {
         team_poke: $('#my_team .switch').data("id"),
         backpack_poke: $('#my_backpack .switch').data("id")
       },
       success: function(response) {
         console.log("Save!");
-        console.log(response);
+        location.reload();
+      },
+      error: function(error) {
+        console.log("ERROR!");
+        console.log(error);
+        // window.location = '/users/';
       }
     });
   });
