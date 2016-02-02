@@ -1,0 +1,12 @@
+
+<div class='events'>
+	<h3>Event:</h3>
+
+	<%= image_tag '/images/pokeball.jpg', size: "100"%><br>
+
+	<p><strong>Type: </strong><%= @event.category %></p>
+	<p><strong>Coords: </strong><%= @event.coords %></p>
+	<p><strong>Description: </strong><%= @event.description %></p>
+
+	<%= link_to "Back", events_path %>
+</div>

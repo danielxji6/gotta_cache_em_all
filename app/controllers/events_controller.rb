@@ -7,9 +7,7 @@ class EventsController < ApplicationController
   end
 
   def new
-      
-      user1 = params[:user][:role]
-      puts user1
+    if admin?
       @event = Event.new
       # loader = Poke::API::Loader.new("pokemon")
       # i = 1
@@ -18,34 +16,46 @@ class EventsController < ApplicationController
         data = JSON.parse(line)
         @pokemons << data
       end
-    
+    else
+      redirect_to events_path
+    end
   end
 
   def create
-    loader = Poke::API::Loader.new("pokemon")
+    if admin?
+      loader = Poke::API::Loader.new("pokemon")
 
-    poke_number = params[:event][:dex_number]
-    selected_poke = loader.find(poke_number)
+      poke_number = params[:event][:dex_number]
+      selected_poke = loader.find(poke_number)
 
-    categories = []
-    selected_poke["types"].each do |type|
-      categories << type["name"].capitalize
-    end
-    categories = categories.join(", ")
+      categories = []
+      selected_poke["types"].each do |type|
+        categories << type["name"].capitalize
+      end
+      categories = categories.join(", ")
 
-    @event = Event.new(event_params)
-    @event.name = selected_poke["name"]
-    @event.category = categories
-    @event.image = "https://s3-eu-west-1.amazonaws.com/calpaterson-pokemon/#{poke_number}.jpeg"
-    @event.hash_data = set_hash_data
-    if @event.save
-      redirect_to @event
+      @event = Event.new(event_params)
+      @event.name = selected_poke["name"]
+      @event.category = categories
+      @event.image = "https://s3-eu-west-1.amazonaws.com/calpaterson-pokemon/#{poke_number}.jpeg"
+      @event.hash_data = set_hash_data
+      if @event.save
+        redirect_to @event
+      else
+        redirect_to events_new_path
+      end
     else
-      redirect_to events_new_path
+      flash[:error] = "Not authorized"
+      redirect_to events_path
     end
   end
 
   def show
+    if admin?
+      render :show
+    else
+      render :show_trainer
+    end
   end
 
   def edit
@@ -77,6 +87,10 @@ class EventsController < ApplicationController
   def set_hash_data
     (@event.name + @event.coords + "WDI25").hash
   end
- 
+
+
+  def admin?
+    current_user.try(:role) == "admin"
+  end
 
 end

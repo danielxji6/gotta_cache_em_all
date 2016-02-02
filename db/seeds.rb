@@ -11,7 +11,8 @@ user1_data = {
 	full_name: "Test1",
 	email: "t1@t.com",
 	username: "testtest1",
-	password: "123"
+	password: "123",
+	role: "admin"
 }
 user2_data = {
 	full_name: "Test2",
