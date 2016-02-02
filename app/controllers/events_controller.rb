@@ -7,6 +7,7 @@ class EventsController < ApplicationController
   end
 
   def new
+    p admin?
     @event = Event.new
     # loader = Poke::API::Loader.new("pokemon")
     # i = 1
@@ -72,6 +73,10 @@ class EventsController < ApplicationController
 
   def set_hash_data
     (@event.name + @event.coords + "WDI25").hash
+  end
+
+  def admin?
+    user = current_user
   end
 
 end
