@@ -7,14 +7,18 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
-    # loader = Poke::API::Loader.new("pokemon")
-    # i = 1
-    @pokemons = []
-    File.open('./app/assets/data/pokemon.json').each do |line|
-      data = JSON.parse(line)
-      @pokemons << data
-    end
+      
+      user1 = params[:user][:role]
+      puts user1
+      @event = Event.new
+      # loader = Poke::API::Loader.new("pokemon")
+      # i = 1
+      @pokemons = []
+      File.open('./app/assets/data/pokemon.json').each do |line|
+        data = JSON.parse(line)
+        @pokemons << data
+      end
+    
   end
 
   def create
@@ -46,7 +50,7 @@ class EventsController < ApplicationController
 
   def edit
     @pokemons = []
-    File.open('./app/assets/data/pokemon.rb').each do |line|
+    File.open('./app/assets/data/pokemon.json').each do |line|
       data = JSON.parse(line)
       @pokemons << data
     end
@@ -73,5 +77,6 @@ class EventsController < ApplicationController
   def set_hash_data
     (@event.name + @event.coords + "WDI25").hash
   end
+ 
 
 end
