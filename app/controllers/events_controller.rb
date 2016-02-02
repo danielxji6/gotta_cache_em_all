@@ -8,13 +8,13 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    loader = Poke::API::Loader.new("pokemon")
-    i = 1
+    # loader = Poke::API::Loader.new("pokemon")
+    # i = 1
     @pokemons = []
-    File.open('./app/assets/data/pokemon.rb').each do |line|
+    File.open('./app/assets/data/pokemon.json').each do |line|
       data = JSON.parse(line)
       @pokemons << data
-    end    
+    end
   end
 
   def create
@@ -25,7 +25,7 @@ class EventsController < ApplicationController
 
     categories = []
     selected_poke["types"].each do |type|
-      categories << type["name"].capitalize 
+      categories << type["name"].capitalize
     end
     categories = categories.join(", ")
 
@@ -49,7 +49,7 @@ class EventsController < ApplicationController
     File.open('./app/assets/data/pokemon.rb').each do |line|
       data = JSON.parse(line)
       @pokemons << data
-    end 
+    end
   end
 
   def update
