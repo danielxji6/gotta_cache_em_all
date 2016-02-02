@@ -1,7 +1,7 @@
 
 <div class='events'>
 	<h3>Event:</h3>
-	<%= image_tag "https://api.qrserver.com/v1/create-qr-code/?data=http%3A//localhost:3000/catch/#{@event.hash_data}&amp;size=200x200" %><br>
+	<%= image_tag "https://api.qrserver.com/v1/create-qr-code/?data=http%3A//cachemon.herokuapp.com/catch/#{@event.hash_data}&amp;size=200x200" %><br>
 	<!-- 'https://api.qrserver.com/v1/create-qr-code/?data=http%3A//****OUR_SITE_NAME****.herokuapp.com/catch/"#{@event.hash_data}&amp' -->
 	<hr />
 	<h2><%= @event.name%></h2>
