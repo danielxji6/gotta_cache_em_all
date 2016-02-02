@@ -30,14 +30,9 @@ ready_team = function() {
       error: function(error) {
         console.log("ERROR!");
         console.log(error);
-        // window.location = '/users/';
       }
     });
   });
-
-  // $('#delete').click(function() {
-  //   location.reload();
-  // });
 };
 
 $(document).ready(ready_team);

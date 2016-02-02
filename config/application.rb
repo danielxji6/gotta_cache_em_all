@@ -1,11 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-<<<<<<< HEAD
-# require './app/assets/data/pokemon.rb'
-=======
-# require './app/assets/data/pokemon.json'
->>>>>>> 7ac9467711787b847aac8f5cf58e8f6673991175
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
