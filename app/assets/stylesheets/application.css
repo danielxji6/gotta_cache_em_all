@@ -18,7 +18,7 @@
 
 
 .jumbotron{
-	background-image: url('/images/poke_jumbotron2.png');
+	background-image: url('poke_jumbotron2.png');
 	background-position: center;
 	background-color: black;
 	height: 350px;
