@@ -1,3 +1,4 @@
+
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update]
 
@@ -10,11 +11,10 @@ class EventsController < ApplicationController
     loader = Poke::API::Loader.new("pokemon")
     i = 1
     @pokemons = []
-    while i <= 151
-      found_poke = loader.find(i)
-      @pokemons << [found_poke["national_id"], found_poke["name"]]
-      i += 1
-    end
+    File.open('./app/assets/data/pokemon.rb').each do |line|
+      data = JSON.parse(line)
+      @pokemons << data
+    end    
   end
 
   def create
@@ -45,6 +45,11 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @pokemons = []
+    File.open('./app/assets/data/pokemon.rb').each do |line|
+      data = JSON.parse(line)
+      @pokemons << data
+    end 
   end
 
   def update
