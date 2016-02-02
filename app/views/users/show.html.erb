@@ -1,28 +1,31 @@
-<div>
-	<h1>Welcome <%= @user.full_name %></h1>
-	<p><%= @user.email %></p>
-	<p class="small text-muted">Joined <%= time_ago_in_words(@user.created_at) %> ago</p>
-</div>
-<h2>My Team</h2>
-	<div id='my_team' class="container">
-		<div class='row'>
-			<% @team.each do |pokemon| %>
-				<div class='col-sm-2'>
-					<%= link_to image_tag(pokemon.event.image, size: "100"), pokemon_path(current_user, pokemon) %><br>
-						<p><%= pokemon.event.name %></p>
+<div class='users'>
+	<div class='container centered'>
+		<h1>Welcome <%= @user.full_name %></h1>
+		<p><%= @user.email %></p>
+		<p class="small text-muted">Joined <%= time_ago_in_words(@user.created_at) %> ago</p>
+	</div>
+	<div class='container'>
+		<h2>My Team</h2>
+		<div id='my_team' class="container">
+			<div class='row'>
+				<% @team.each do |pokemon| %>
+					<div class='col-sm-2'>
+						<%= link_to image_tag(pokemon.event.image, size: "100"), pokemon_path(current_user, pokemon) %><br>
+							<p><%= pokemon.event.name %></p>
 
-				</div>
-			<% end %>
-			<% (@team.size+1..6).each do |n| %>
-				<div class='col-sm-2'>
-					<%= image_tag "", size: "100"%><br>
-						<p>Empty</p>
-				</div>
-			<% end %>
+					</div>
+				<% end %>
+				<% (@team.size+1..6).each do |n| %>
+					<div class='col-sm-2'>
+						<%= image_tag "", size: "100"%><br>
+							<p>Empty</p>
+					</div>
+				<% end %>
+			</div>
 		</div>
 	</div>
 
-	<h3>My Back Pack</h3>
+	<h2>My Back Pack</h2>
 	<div id="my_backpack"class="container">
 		<% @pokemons.each do |pokemon| %>
 			<% if !pokemon.team_position %>
@@ -38,3 +41,4 @@
 	<div>
 		<%= link_to "Edit Team", edit_user_path(current_user), class: "btn btn-success" %>
 	</div>
+</div>

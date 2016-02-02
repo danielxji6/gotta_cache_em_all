@@ -1,5 +1,6 @@
-<h3>My Team <%= link_to "Delete Team", delete_team_path, id: "delete", class: "btn btn-danger"%></h3>
-
+<div class='container centered'>
+	<h2>My Team </h2>
+</div>
 <p hidden id="user_id"><%= @user.id%></p>
 <div id='my_team' class="container">
 	<div class='row'>
@@ -16,22 +17,29 @@
 					<p>Empty</p>
 			</div>
 		<% end %>
+
+	</div>
+	<div class="centered"><%= link_to "Clear Team", delete_team_path, id: "delete", class: "btn btn-danger"%>
 	</div>
 </div>
+<hr />
 
-<h3>My Back Pack</h3>
-<div id="my_backpack"class="container">
-	<% @pokemons.each do |pokemon| %>
-		<% if !pokemon.team_position %>
-			<div class='poke col-md-2' data-id=<%= pokemon.id%>>
-        <%= image_tag pokemon.event.image, size: "100" %><br>
-					<p><%= pokemon.event.name %></p>
-			</div>
-		<% end %>
-	<%end%>
-</div>
+<div class='container centered'>
 
-<div>
-	<%= link_to "Back", user_path(current_user), class: "btn btn-primary" %>
-  <%= button_tag "Save Team", class: "btn btn-success", id: "save" %>
+	<h2>My Back Pack</h2>
+	<div>
+		<%= link_to "Back", user_path(current_user), class: "btn btn-primary" %>
+	  <%= button_tag "Save Team", class: "btn btn-success", id: "save" %>
+	</div>
+
+	<div id="my_backpack"class="container">
+		<% @pokemons.each do |pokemon| %>
+			<% if !pokemon.team_position %>
+				<div class='poke col-md-2' data-id=<%= pokemon.id%>>
+	        <%= image_tag pokemon.event.image, size: "100" %><br>
+						<p><%= pokemon.event.name %></p>
+				</div>
+			<% end %>
+		<%end%>
+	</div>
 </div>
