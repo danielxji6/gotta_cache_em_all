@@ -1,15 +1,18 @@
-<h3>Event:</h3>
-<h3><%= @event.name%></h3>
+<div class='events'>
+	<h3>Event:</h3>
+	<hr />
+	<h2><%= @event.name%></h2>
 
-<%= image_tag @event.image, size: "100"%><br>
+	<%= image_tag @event.image, size: "100"%><br>
 
-<p>Type: <%= @event.category %></p>
-<p>Coords: <%= @event.coords %></p>
-<p>
-  Level Range:
-  <%= @event.level_min %> to
-  <%= @event.level_max %>
-</p>
+	<p><strong>Type: </strong><%= @event.category %></p>
+	<p><strong>Coords: </strong><%= @event.coords %></p>
+	<p>
+	  <strong>Level Range:</strong>
+	  <%= @event.level_min %> to
+	  <%= @event.level_max %>
+	</p>
 
-<%= link_to "Edit", edit_event_path %>
-<%= link_to "Back", events_path %>
+	<%= link_to "Edit", edit_event_path %>
+	<%= link_to "Back", events_path %>
+</div>

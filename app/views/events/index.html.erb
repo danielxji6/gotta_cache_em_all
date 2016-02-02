@@ -1,21 +1,21 @@
 <p id="notice"><%= notice %></p>
-
+<div class='events'>
 <h3>Events</h3><hr>
+<hr />
+	<div class='container'>
+		<div class='float_left'>
+	<% @events.each do |event| %>
+	  <p>Pokemon name: <%= link_to event.name, event_path(event) %></p>
+	  <p>Type: <%= event.category %></p>
+	  <p>Coords: <%= event.coords %></p>
+	  <hr>
+	<% end %>
+		</div>
 
-<% @events.each do |event| %>
-  <p>Pokemon name: <%= link_to event.name, event_path(event) %></p>
-  <p>Type: <%= event.category %></p>
-  <p>Coords: <%= event.coords %></p>
-  <hr>
-<% end %>
-<div class='container'>
-	<div class='float_left'>
-		my profile stuffs
-	</div>
+		<div class='float_right'>
+			<iframe width="450" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJIQBpAG2ahYAR_6128GcTUEo&key=<%= ENV["GOOGLE_MAPS"] %>" ></iframe>
 
-	<div class='float_right'>
-		<iframe width="450" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJIQBpAG2ahYAR_6128GcTUEo&key=<%= ENV["GOOGLE_MAPS"] %>" ></iframe>
-
-		<p><%= link_to 'New Events', new_event_path %></p>
+			<p><%= link_to 'New Events', new_event_path %></p>
+		</div>
 	</div>
 </div>
