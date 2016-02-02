@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 		@pokemons = @user.pokemons
 		@team = @pokemons
 			.select { |poke| poke.team_position }
-			.sort { |x, y| x.team_position <=> y.team_position}
+			.sort_by { |x| x.team_position }
 	end
 
 	def update
