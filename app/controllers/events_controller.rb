@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update]
 
   def index
-    @events = Event.all
+    @events = Event.all.order('created_at DESC')
   end
 
   def new
@@ -59,18 +59,24 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @pokemons = []
-    File.open('./app/assets/data/pokemon.json').each do |line|
-      data = JSON.parse(line)
-      @pokemons << data
+    if admin?
+      @pokemons = []
+      File.open('./app/assets/data/pokemon.json').each do |line|
+        data = JSON.parse(line)
+        @pokemons << data
+      end
+    else
+      redirect_to events_path
     end
   end
 
   def update
-    if @event.update(event_params)
+    if admin? && @event.update(event_params)
+      flash[:notice] = "Updated event."
       redirect_to @event
     else
-      redirect_to @event
+      flash[:error] = "Failed"
+      redirect_to event_path(@event)
     end
   end
 
@@ -86,11 +92,6 @@ class EventsController < ApplicationController
 
   def set_hash_data
     (@event.name + @event.coords + "WDI25").hash
-  end
-
-
-  def admin?
-    current_user.try(:role) == "admin"
   end
 
 end

@@ -1,1 +1,12 @@
-There are <%= @users.count %> users signed up here.
+<p>There are <%= @users.count %> users signed up here.</p>
+<div class="container">
+  <% @users.each do |user| %>
+  <div id="<%= user.username %>" class="admin col-sm-2" data-id="<%= user.id %>">
+    <h5><%= user.full_name %></h5>
+    <p><%= user.username %></p>
+    <p><%= user.email %></p>
+    <%= check_box_tag "Admin?", true, user.admin %>
+    <hr>
+  </div>
+  <% end %>
+</div>

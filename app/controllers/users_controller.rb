@@ -17,8 +17,9 @@ class UsersController < ApplicationController
 			login(@user)
 			if session[:catch_data]
 				redirect_to catch_path(session[:catch_data])
+				session[:catch_data] = nil
 			else
-				redirect_to @user
+				redirect_to events_path
 			end
 		else
 			flash[:error] = @user.errors.full_messages.join(", ")
