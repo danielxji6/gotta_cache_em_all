@@ -8,8 +8,8 @@ This app allows users to scan a QR-code in a physical location and redirects the
 
 
 
-##Wireframes and user stories
-![Image of wireframe] (/images/wireframe.png)
+##Wireframes
+![wireframe] (http://i.imgur.com/41nU67W.png)
 
 ##Link to Heroku hosted project
 [heroku link](http://cachemon.herokuapp.com/)
@@ -31,8 +31,8 @@ This app allows users to scan a QR-code in a physical location and redirects the
 * Google Maps
 
 ##Screenshots
-![Image of My pokeTeam] (/images/My_PokeTeam)
-![Image of Events] (/images/Events)
+![My pokeTeam] (http://i.imgur.com/hLvKeRb.png)
+![Events] (http://i.imgur.com/wDw0dXi.png)
 
 ##Wish List / Future Development
 * Battle Feature
