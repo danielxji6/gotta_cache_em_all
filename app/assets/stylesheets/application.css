@@ -18,7 +18,8 @@
 
 
 .jumbotron{
-	background-image: url('poke_jumbotron.png');
+	background-image: url('poke_jumbotron2.png');
+	background-position: center;
 	background-color: black;
 	height: 350px;
 	width:100%;
@@ -28,8 +29,8 @@
 
 .jumbotron_text{
 	position: relative;
-	top: 220px;
-	left: 250px; 
+	top: 230px;
+	left: 25%; 
 }
 
 
@@ -64,5 +65,4 @@ h3{
 	font-size: 72px;
 
 }
-
 
