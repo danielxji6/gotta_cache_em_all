@@ -50,6 +50,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'better_errors'
   gem 'annotate'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -62,4 +63,11 @@ end
 
 group :production do
   gem 'rails_12factor'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'capybara-screenshot'
+  gem 'database_cleaner'
 end

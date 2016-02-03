@@ -2,8 +2,24 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :delete_team]
 
 	def index
-		@users = User.all
+		if admin?
+			@users = User.where(admin: true)
+			@user = User.new
+		else
+			redirect_to events_path
+		end
 	end
+
+	def create_admin
+		if admin?
+			user = User.find_by(username: params[:username])
+			user.update_attribute(:admin, true)
+			redirect_to users_path
+		else
+			redirect_to events_path
+		end
+	end
+
 
 	def new
 		@user = User.new
@@ -17,8 +33,9 @@ class UsersController < ApplicationController
 			login(@user)
 			if session[:catch_data]
 				redirect_to catch_path(session[:catch_data])
+				session[:catch_data] = nil
 			else
-				redirect_to @user
+				redirect_to events_path
 			end
 		else
 			flash[:error] = @user.errors.full_messages.join(", ")
@@ -73,7 +90,8 @@ class UsersController < ApplicationController
 	private
 
 	def set_user
-		@user = User.find_by_id(params[:id])
+		user_id = params[:id] || current_user.id
+		@user = User.find_by_id(user_id)
 	end
 
 end

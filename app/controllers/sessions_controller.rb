@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
 	def create
 		user_params = params.require(:user).permit(:username, :password)
 		@user = User.confirm(user_params)
-		if @user 
+		if @user
 			login(@user)
-			redirect_to @user
+			redirect_to events_path
 	    flash[:notice] = "Successfully logged in"
 		else
 			redirect_to login_path
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 	end
 
 	def destroy
-		logout 
+		logout
 		redirect_to root_path
 	end
 

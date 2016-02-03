@@ -3,60 +3,80 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update]
 
   def index
-    @events = Event.all
+    @events = Event.all.order('created_at DESC')
   end
 
   def new
-    @event = Event.new
-    # loader = Poke::API::Loader.new("pokemon")
-    # i = 1
-    @pokemons = []
-    File.open('./app/assets/data/pokemon.json').each do |line|
-      data = JSON.parse(line)
-      @pokemons << data
+    if admin?
+      @event = Event.new
+      # loader = Poke::API::Loader.new("pokemon")
+      # i = 1
+      @pokemons = []
+      File.open('./app/assets/data/pokemon.json').each do |line|
+        data = JSON.parse(line)
+        @pokemons << data
+      end
+    else
+      redirect_to events_path
     end
   end
 
   def create
-    loader = Poke::API::Loader.new("pokemon")
+    if admin?
+      loader = Poke::API::Loader.new("pokemon")
 
-    poke_number = params[:event][:dex_number]
-    selected_poke = loader.find(poke_number)
+      poke_number = params[:event][:dex_number]
+      selected_poke = loader.find(poke_number)
 
-    categories = []
-    selected_poke["types"].each do |type|
-      categories << type["name"].capitalize
-    end
-    categories = categories.join(", ")
+      categories = []
+      selected_poke["types"].each do |type|
+        categories << type["name"].capitalize
+      end
+      categories = categories.join(", ")
 
-    @event = Event.new(event_params)
-    @event.name = selected_poke["name"]
-    @event.category = categories
-    @event.image = "https://s3-eu-west-1.amazonaws.com/calpaterson-pokemon/#{poke_number}.jpeg"
-    @event.hash_data = set_hash_data
-    if @event.save
-      redirect_to @event
+      @event = Event.new(event_params)
+      @event.name = selected_poke["name"]
+      @event.category = categories
+      @event.image = "https://s3-eu-west-1.amazonaws.com/calpaterson-pokemon/#{poke_number}.jpeg"
+      @event.hash_data = set_hash_data
+      if @event.save
+        redirect_to @event
+      else
+        redirect_to events_new_path
+      end
     else
-      redirect_to events_new_path
+      flash[:error] = "Not authorized"
+      redirect_to events_path
     end
   end
 
   def show
+    if admin?
+      render :show
+    else
+      render :show_trainer
+    end
   end
 
   def edit
-    @pokemons = []
-    File.open('./app/assets/data/pokemon.json').each do |line|
-      data = JSON.parse(line)
-      @pokemons << data
+    if admin?
+      @pokemons = []
+      File.open('./app/assets/data/pokemon.json').each do |line|
+        data = JSON.parse(line)
+        @pokemons << data
+      end
+    else
+      redirect_to events_path
     end
   end
 
   def update
-    if @event.update(event_params)
+    if admin? && @event.update(event_params)
+      flash[:notice] = "Updated event."
       redirect_to @event
     else
-      redirect_to @event
+      flash[:error] = "Failed"
+      redirect_to event_path(@event)
     end
   end
 
