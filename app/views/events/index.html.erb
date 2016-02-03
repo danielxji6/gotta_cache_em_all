@@ -2,7 +2,7 @@
 <h3>Events</h3>
 <hr>
 	<div class='container'>
-		<div class='float_left'>
+		<div class='col-md-5 col-md-offset-1'>
 			<% if admin? %>
 
 				<% @events.each do |event| %>
@@ -19,7 +19,7 @@
 			<% end %>
 		</div>
 
-		<div class='float_right map-container' style="height:450px; width:450px;">
+		<div class='map-container col-md-5' style="height:450px; width:450px;">
 			<div id="map"></div>
 			<% if admin? %>
 				<p><%= link_to 'New Events', new_event_path %></p>
