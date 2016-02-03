@@ -1,7 +1,7 @@
 <div class='users centered'>
 	<div class='container'>
-		<h1>Welcome <%= @user.full_name %></h1>
-		<p><%= @user.email %></p>
+		<h1> <%= @user.username %></h1>
+		<p>Welcome <%= @user.full_name %></p>
 		<p class="small text-muted">Joined <%= time_ago_in_words(@user.created_at) %> ago</p>
 		<%= link_to "Edit Team", edit_user_path(current_user), class: "btn btn-success" %>
 	</div>
