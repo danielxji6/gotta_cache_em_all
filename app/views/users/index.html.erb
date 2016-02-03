@@ -1,6 +1,13 @@
 <p>There are <%= @users.count %> users signed up here.</p>
 <div class="container">
+
+<%= form_tag('/users/admin', method: 'post') do %>
+<%= label_tag(:username, "User Name")%>
+<%= text_field_tag(:username)%>
+<%= submit_tag('Save Admin')%>
+<% end %>
   <% @users.each do |user| %>
+
   <div id="<%= user.username %>" class="admin col-sm-2" data-id="<%= user.id %>">
     <h5><%= user.full_name %></h5>
     <p><%= user.username %></p>

@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get '/users/:id/edit', to: 'users#edit', as: 'edit_user'
   patch '/users/:id', to: 'users#update'
   get '/users/:id/delete_team', to: 'users#delete_team', as: 'delete_team'
+  post '/users/admin', to: 'users#create_admin'
+  
+
 
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
