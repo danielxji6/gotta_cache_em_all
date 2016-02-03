@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 			@users = User.where(admin: true)
 			@user = User.new
 		else
-			redirect_to events_path 
+			redirect_to events_path
 		end
 	end
 
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 			user.update_attribute(:admin, true)
 			redirect_to users_path
 		else
-			redirect_to events_path 
+			redirect_to events_path
 		end
 	end
 
@@ -90,7 +90,8 @@ class UsersController < ApplicationController
 	private
 
 	def set_user
-		@user = User.find_by_id(params[:id])
+		user_id = params[:id] || current_user.id
+		@user = User.find_by_id(user_id)
 	end
 
 end
