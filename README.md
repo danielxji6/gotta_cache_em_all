@@ -41,6 +41,7 @@ This app allows users to scan a QR-code in a physical location and redirects the
 * Pokemon level-ups and Evolutions
 * Geofencing
 * Pokemon trades
+* Send email to users for new events (new pokemon)
 
 ##Contributors 
 * [Danny Chan] (https://github.com/chan-d)
