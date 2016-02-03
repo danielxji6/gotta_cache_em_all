@@ -13,7 +13,12 @@ class UsersController < ApplicationController
 	def create_admin
 		if admin?
 			user = User.find_by(username: params[:username])
-			user.update_attribute(:admin, true)
+			if user.try(:admin)
+				user.update_attribute(:admin, true)
+				flash[:notice] = 'Successfully added admin.'
+			else
+				flash[:error] = 'User not found, please try again.' 
+			end
 			redirect_to users_path
 		else
 			redirect_to events_path
