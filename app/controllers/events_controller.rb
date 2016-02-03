@@ -4,6 +4,7 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all.order('created_at DESC')
+    current_user
   end
 
   def new
@@ -87,7 +88,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:dex_number, :coords, :level_min, :level_max)
+    params.require(:event).permit(:dex_number, :coords, :level_min, :level_max, :description)
   end
 
   def set_hash_data

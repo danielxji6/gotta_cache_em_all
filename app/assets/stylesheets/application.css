@@ -66,3 +66,8 @@ h3{
 
 }
 
+#map {
+	height: 100%;
+	width: auto;
+}
+

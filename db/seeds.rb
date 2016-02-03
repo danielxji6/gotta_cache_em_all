@@ -25,7 +25,7 @@ user2 = User.create(user2_data)
 
 event1_data = {
 	name: "Mew",
-	coords: "123,123",
+	coords: "37.723199,-122.497226",
 	category: "Phichic",
 	dex_number: 151,
 	description: "Mew. Mew. Mew. It's on the bar.",
@@ -36,7 +36,7 @@ event1_data = {
 }
 event2_data = {
 	name: "Pikachu",
-	coords: "123,123",
+	coords: "37.778788,-122.390676",
 	category: "Electric",
 	dex_number: 25,
 	description: "Pika, pika. Find it next to the cashier",
@@ -47,7 +47,7 @@ event2_data = {
 }
 event3_data = {
 	name: "Bulbasaur",
-	coords: "123,123",
+	coords: "37.791794,-122.465147",
 	category: "Grass",
 	dex_number: 1,
 	description: "",
