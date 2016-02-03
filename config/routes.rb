@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   post '/sessions', to: 'sessions#create'
 
-  get '/events', to: 'events#index'
+  get '/events', to: 'events#index', as: 'events'
   get '/events/new', to: 'events#new', as: 'new_event'
   post '/events', to:'events#create'
   get '/events/:id', to: 'events#show', as: 'event'
