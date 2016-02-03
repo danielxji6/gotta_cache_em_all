@@ -1,20 +1,31 @@
 <div class='events'>
-<h3>Events</h3><hr>
-<hr />
+<h3>Events</h3>
+<hr>
 	<div class='container'>
 		<div class='float_left'>
-	<% @events.each do |event| %>
-	  <p>Pokemon name: <%= link_to event.name, event_path(event) %></p>
-	  <p>Type: <%= event.category %></p>
-	  <p>Coords: <%= event.coords %></p>
-	  <hr>
-	<% end %>
+			<% if admin? %>
+
+				<% @events.each do |event| %>
+		  		<p>Pokemon name: <%= link_to event.name, event_path(event) %></p>
+		  		<p>Type: <%= event.category %></p>
+		  		<p>Coords: <%= event.coords %></p>
+		  		<hr>
+				<% end %>
+			<% else %>
+				<% @events.each do |event| %>
+					<p>Coordinates: <%= link_to event.coords, event_path(event) %></p>
+					<hr>
+				<% end %>
+			<% end %>
 		</div>
 
-		<div class='float_right'>
-			<iframe width="450" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJIQBpAG2ahYAR_6128GcTUEo&key=<%= ENV["GOOGLE_MAPS"] %>" ></iframe>
+		<div class='float_right map-container' style="height:450px; width:450px;">
+			<div id="map"></div>
 			<% if admin? %>
 				<p><%= link_to 'New Events', new_event_path %></p>
+			<% end %>
+			<% @events.each do |event| %>
+				<div class="event_coords" data-coords="<%= event.coords %>"></div>
 			<% end %>
 		</div>
 	</div>
