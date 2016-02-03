@@ -1,22 +1,23 @@
-<div class='container centered'>
-	<h2>My Team </h2>
-</div>
 <p hidden id="user_id"><%= @user.id%></p>
-<div id='my_team' class="container">
-	<div class='row'>
-		<% @team.each do |pokemon| %>
-			<div class='poke col-sm-2' data-id=<%= pokemon.id%>>
-				<%= image_tag pokemon.event.image, size: "100" %><br>
-					<p><%= pokemon.event.name %></p>
 
-			</div>
-		<% end %>
-		<% (@team.size+1..6).each do |n| %>
-			<div class='poke col-sm-2' data-empty-id=<%= n %>>
-				<%= image_tag "", size: "100"%><br>
-					<p>Empty</p>
-			</div>
-		<% end %>
+<div class="container centered">
+	<h2>My Team </h2>
+	<div id='my_team'>
+		<div class='row'>
+			<% @team.each do |pokemon| %>
+				<div class='poke col-sm-2 col-xs-4' data-id=<%= pokemon.id%>>
+					<%= image_tag pokemon.event.image, size: "100" %><br>
+						<p><%= pokemon.event.name %></p>
+
+				</div>
+			<% end %>
+			<% (@team.size+1..6).each do |n| %>
+				<div class='poke col-sm-2 col-xs-4' data-empty-id=<%= n %>>
+					<%= image_tag "", size: "100" %><br>
+						<p>Empty</p>
+				</div>
+			<% end %>
+		</div>
 
 	</div>
 	<div class="centered"><%= link_to "Clear Team", delete_team_path, id: "delete", class: "btn btn-danger"%>
@@ -35,7 +36,7 @@
 	<div id="my_backpack"class="container">
 		<% @pokemons.each do |pokemon| %>
 			<% if !pokemon.team_position %>
-				<div class='poke col-md-2' data-id=<%= pokemon.id%>>
+				<div class='poke col-sm-2 col-xs-3' data-id=<%= pokemon.id%>>
 	        <%= image_tag pokemon.event.image, size: "100" %><br>
 						<p><%= pokemon.event.name %></p>
 				</div>

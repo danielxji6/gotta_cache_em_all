@@ -46,7 +46,7 @@ class EventsController < ApplicationController
 
   def edit
     @pokemons = []
-    File.open('./app/assets/data/pokemon.rb').each do |line|
+    File.open('./app/assets/data/pokemon.json').each do |line|
       data = JSON.parse(line)
       @pokemons << data
     end
