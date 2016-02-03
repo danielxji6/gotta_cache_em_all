@@ -22,11 +22,14 @@
         <ul class="nav navbar-nav navbar-right nav-pills">
         <li role="presentation"><%= link_to "Events", events_path %></li>
           <% if current_user %>
-            <li role="presentation"><%= link_to "Profile", profile_path %></li>
-            <li role="presentation"><%= link_to "Logout", logout_path %></li>
+            <li role="presentation"><%= link_to "Profile", profile_path, id: "profile_link"  %></li>
+            <% if admin? %>
+              <li role="presentation"><%= link_to "Administrators", users_path, id: 'admin_link' %></li>
+            <% end %>
+            <li role="presentation"><%= link_to "Logout", logout_path, id: "logout_link"  %></li>
           <% else %>
-            <li role="presentation"><%= link_to "Sign Up", signup_path %></li>
-            <li role="presentation"><%= link_to "Login", login_path %></li>
+            <li role="presentation"><%= link_to "Sign Up", signup_path, id: "signup_link" %></li>
+            <li role="presentation"><%= link_to "Login", login_path, id: "login_link" %></li>
           <% end %>
 
         </ul>
@@ -35,7 +38,11 @@
   </nav>
 
 	<% flash.each do |name, msg| %>
-	  <p>
+    <% if name == "error" %>
+  	  <p class="alert-danger">
+    <% else %>
+      <p class="alert-success">
+    <% end %>
 	    <small> <%= name.capitalize %>: <%= msg %> </small>
 	  </p>
 	<% end %>

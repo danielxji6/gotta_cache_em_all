@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
 	end
 
 	validates :full_name, :email, :password, presence: true, length: {maximum: 255}
-	validates :username, length: {in: 6..12, message: "must be between 6 and 12 characters"}
+	validates :username, length: {in: 6..50, message: "must be between 6 and 50 characters"}
 	validates :password, length: { minimum: 3, message: "must be at least 3 characters" }
-	validates :email, :username, uniqueness: true 
+	validates :email, :username, uniqueness: true
 
 	validates :email, format: { with: /@/ }, length: { minimum: 6 }
 
