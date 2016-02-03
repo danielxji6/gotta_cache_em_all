@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :set_user, only: [:show, :edit, :update, :delete_team]
+	before_action :logged_in?, :set_user, only: [:show, :edit, :update, :delete_team]
 
 	def index
 		if admin?
@@ -13,9 +13,13 @@ class UsersController < ApplicationController
 	def create_admin
 		if admin?
 			user = User.find_by(username: params[:username])
-			if user.try(:admin)
-				user.update_attribute(:admin, true)
-				flash[:notice] = 'Successfully added admin.'
+			if user
+				user.update_attribute(:admin, !user.admin)
+				if user.admin
+					flash[:notice] = 'Successfully added admin.'
+				else
+					flash[:notice] = 'Successfully removed admin.'
+				end
 			else
 				flash[:error] = 'User not found, please try again.' 
 			end
@@ -56,10 +60,14 @@ class UsersController < ApplicationController
 	end
 
 	def edit
+		if @user == current_user
 		@pokemons = @user.pokemons
 		@team = @pokemons
 			.select { |poke| poke.team_position }
 			.sort_by { |x| x.team_position }
+		else
+			redirect_to @user
+		end
 	end
 
 	def update

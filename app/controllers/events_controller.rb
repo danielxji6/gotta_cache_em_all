@@ -1,6 +1,6 @@
 
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update]
+  before_action :logged_in?, :set_event, only: [:show, :edit, :update]
 
   def index
     @events = Event.all.order('created_at DESC')
