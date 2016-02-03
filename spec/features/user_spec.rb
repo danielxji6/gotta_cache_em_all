@@ -73,9 +73,36 @@ describe 'Destory login session' do
   end
 
   it 'logout user' do
-    page.find('#logout').click
+    page.find('#logout_link').click
+
     expect(page.current_path).to match(root_path)
   end
+end
 
+describe 'Adding new admin as admin' do
+
+  let(:user3) { FactoryGirl.create(:user) }
+  let(:admin) { FactoryGirl.create(:admin) }
+  before do
+    visit '/login'
+    fill_in 'user_username', with: admin.username
+    fill_in 'user_password', with: '123'
+    click_button 'Login'
+    visit '/users'
+  end
+
+  it 'has a text fornm' do
+    expect(page).to have_css('form')
+  end
+
+  it 'can add other user as admin' do
+    fill_in 'username', with: user3.username
+    click_button 'Save/Remove Admin'
+
+    expect(page.current_path).to match(/users/)
+
+    expect(page.find('.alert-success')).to have_content 'Successfully added admin.'
+    expect(page).to have_content user3.username
+  end
 
 end
