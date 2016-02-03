@@ -1,5 +1,4 @@
-# gotta cache em all
-
+![gotta_cache_em_all] (http://i.imgur.com/un7wUh7.png)
 
 
 ##Description: 
@@ -18,12 +17,13 @@ This app allows users to scan a QR-code in a physical location and redirects the
 ###Languages 
 * HTML
 * CSS/SaSS
-* Ruby
 * JavaScript
-* jQuery
+* Ruby
+
 
 ###External Libraries/ Frameworks
 * Bootstrap
+* jQuery
 
 ###APIs
 * PokeAPI
