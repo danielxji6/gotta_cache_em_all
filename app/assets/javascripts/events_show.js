@@ -1,4 +1,4 @@
-$(document).ready(function (){
+function renderGMaps() {
 	if ($(".events").length > 0) {
 		map = new google.maps.Map(document.getElementById('map'), {
 		  center: {lat: 37.758712, lng: -122.444130},
@@ -19,5 +19,8 @@ $(document).ready(function (){
 			});
 		});
 	}
-});
-	
+}
+
+$(document).on('page:load', renderGMaps);
+
+$(document).ready(renderGMaps);
