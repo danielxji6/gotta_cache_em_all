@@ -4,16 +4,18 @@
 <%= form_tag('/users/admin', method: 'post') do %>
 <%= label_tag(:username, "User Name")%>
 <%= text_field_tag(:username)%>
-<%= submit_tag('Save Admin')%>
+<%= submit_tag('Save/Remove Admin')%>
 <% end %>
+
+  
   <% @users.each do |user| %>
 
   <div id="<%= user.username %>" class="admin col-sm-2" data-id="<%= user.id %>">
-    <h5><%= user.full_name %></h5>
-    <p><%= user.username %></p>
-    <p><%= user.email %></p>
-    <%= check_box_tag "Admin?", true, user.admin %>
-    <hr>
-  </div>
+    <h4><%= user.full_name %></h4>
+    <p><strong>Username: </strong> <%= user.username %></p>
+    <p><strong>User Email: </strong><%= user.email %></p>
+     <hr>
+    </div>
   <% end %>
+  
 </div>
