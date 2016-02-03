@@ -5,10 +5,8 @@
 		<p><%= @user.email %></p>
 
 		<p class="small text-muted">Joined <%= time_ago_in_words(@user.created_at) %> ago</p>
-		<% if current_user = @user %>
+		<% if @current_user == @user %>
 			<%= link_to "Edit Team", edit_user_path(current_user), class: "btn btn-success" %>
-		<% else %>
-		 <div>redirect_to signup_path</div>
 		<% end %>
 
 

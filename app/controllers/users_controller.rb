@@ -60,10 +60,14 @@ class UsersController < ApplicationController
 	end
 
 	def edit
+		if @user == current_user
 		@pokemons = @user.pokemons
 		@team = @pokemons
 			.select { |poke| poke.team_position }
 			.sort_by { |x| x.team_position }
+		else
+			redirect_to @user
+		end
 	end
 
 	def update
