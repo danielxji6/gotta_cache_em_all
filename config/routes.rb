@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new', as: 'signup'
   post '/users', to: 'users#create'
   get '/users/:id', to: 'users#show', as: 'user'
-  get '/profile', to: 'user#show', as: 'profile'
+  get '/profile', to: 'users#show', as: 'profile'
   get '/users/:id/edit', to: 'users#edit', as: 'edit_user'
   patch '/users/:id', to: 'users#update'
   get '/users/:id/delete_team', to: 'users#delete_team', as: 'delete_team'
