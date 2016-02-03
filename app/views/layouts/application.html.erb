@@ -23,6 +23,9 @@
         <li role="presentation"><%= link_to "Home", root_path %></li>
           <% if current_user %>
             <li role="presentation"><%= link_to "Profile", profile_path %></li>
+            <% if admin? %>
+             <li role="presentation"><%= link_to "Administrators", users_path %></li>
+             <% end %>
             <li role="presentation"><%= link_to "Logout", logout_path %></li>
           <% else %>
             <li role="presentation"><%= link_to "Sign Up", signup_path %></li>
