@@ -10,10 +10,12 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def create_admin
+	def create_admin 
 		if admin?
+			# Find the user going to be admin by username
 			user = User.find_by(username: params[:username])
 			if user
+				# Update the admin attribute by the opposite
 				user.update_attribute(:admin, !user.admin)
 				if user.admin
 					flash[:notice] = 'Successfully added admin.'
@@ -21,7 +23,7 @@ class UsersController < ApplicationController
 					flash[:notice] = 'Successfully removed admin.'
 				end
 			else
-				flash[:error] = 'User not found, please try again.' 
+				flash[:error] = 'User not found, please try again.'
 			end
 			redirect_to users_path
 		else
@@ -53,10 +55,12 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		# Find all the pokemons for the user
 		@pokemons = @user.pokemons
+		# Select pokemon in the team
 		@team = @pokemons
 			.select { |poke| poke.team_position }
-			.sort { |x, y| x.team_position <=> y.team_position}
+			.sort_by { |x| x.team_position }
 	end
 
 	def edit
@@ -71,17 +75,20 @@ class UsersController < ApplicationController
 	end
 
 	def update
+		# Set pkoe1 to the pokemon selete from team or use the empty id
 		poke1 = Pokemon.find_by_id(params[:team_poke]) || params[:empty_position]
 		poke2 = Pokemon.find_by_id(params[:backpack_poke])
 
+		# If empty id is selete
 		if params[:empty_position]
 			poke2.team_position = poke1
 			if poke2.save
 				respond_to do |format|
-					format.json { head :ok }
+					format.json { head :ok } # response success for ajax
 				end
 			end
 		else
+			# Swap the opsition
 			poke2.team_position = poke1.team_position
 			poke1.team_position = nil
 			if poke1.save && poke2.save
@@ -93,6 +100,7 @@ class UsersController < ApplicationController
 	end
 
 	def delete_team
+		# Clear team by set position to nil in all pokemons
 		@user.pokemons.each do |pokemon|
 			pokemon.team_position = nil
 			pokemon.save
