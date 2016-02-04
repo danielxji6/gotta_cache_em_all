@@ -1,53 +1,59 @@
-<%= image_tag @event.image, size: "100"%><br>
-<h3> <%= @event.name %> </h3>
-<p> <%= @event.category %> </p>
-<p> <%= @event.level_min %> </p>
-
-<% if current_user %>
-
-  <%= form_for @user, url: "/catch", method: "post" do |f| %>
-  <%= f.hidden_field :hash_data, required: true, value: @hash_data, class: "form-control" %>
-  <%= f.submit "Catch", class: "btn btn-primary" %>
-  <% end %>
-
-<% else %>
-
-<%= button_to "Create an account!", signup_path, method: "get", class: "btn btn-primary" %>
-
-<section id='catch-form' class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-
-      <%= form_for @user, url: "/catch", method: "post" do |f| %>
-        <fieldset>
-          <legend>Login</legend>
-
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="username">User name</label>
-            <div class="col-md-8">
-              <%= f.text_field :username, required: true, class: "form-control" %><br>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="password">Password</label>
-            <div class="col-md-8">
-              <%= f.password_field :password, required: true, class: "form-control" %>
-              <%= f.hidden_field :hash_data, required: true, value: @hash_data, class: "form-control" %><br>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-md-12">
-              <%= f.submit "Login", class: "btn btn-success" %>
-            </div>
-          </div>
-
-        </fieldset>
-      <% end %>
-
-    </div>
+<div class="row centered">
+  <div class="catch">
+    <h3> <%= @event.name %> </h3>
+    <%= image_tag @event.image %><br>
+    <p> <%= @event.category %> </p>
+    <p> <%= @event.level_min %> </p>
   </div>
-</section>
+  <br>
+  
+  <% if current_user %>
 
-<% end %>
+    <%= form_for @user, url: "/catch", method: "post" do |f| %>
+    <%= f.hidden_field :hash_data, required: true, value: @hash_data, class: "form-control" %>
+    <%= f.submit "Catch", class: "btn btn-primary" %>
+    <% end %>
+
+  <% else %>
+
+    <%= button_to "Create an account!", signup_path, method: "get", class: "btn btn-primary" %>
+    <br>
+
+    <section id='catch-form' class="container">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+
+          <%= form_for @user, url: "/catch", method: "post" do |f| %>
+            <fieldset>
+              <legend>Login</legend>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="username">User name</label>
+                <div class="col-md-8">
+                  <%= f.text_field :username, required: true, class: "form-control" %><br>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Password</label>
+                <div class="col-md-8">
+                  <%= f.password_field :password, required: true, class: "form-control" %>
+                  <%= f.hidden_field :hash_data, required: true, value: @hash_data, class: "form-control" %><br>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-md-12">
+                  <%= f.submit "Login", class: "btn btn-success" %>
+                </div>
+              </div>
+
+            </fieldset>
+          <% end %>
+
+        </div>
+      </div>
+    </section>
+
+  <% end %>
+</div>
