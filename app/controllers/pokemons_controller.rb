@@ -1,5 +1,4 @@
 class PokemonsController < ApplicationController
-	 layout "pokemon.html.erb", only: [:show]
 
 	def index
 		@user = User.find_by_id(params[:user_id])

@@ -33,11 +33,17 @@ Capybara.register_driver :selenium_chrome do |app|
   Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
 
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
+Capybara.javascript_driver = :chrome
+
 # default to selenium with firefox
 Capybara.default_driver = :selenium
 # to use chrome run rspec with `TEST_BROWSER=chrome rspec spec`
 # you may also need to `brew install chromedriver`
-Capybara.default_driver = :selenium_chrome if ENV['TEST_BROWSER'] == 'chrome'
+Capybara.default_driver = :selenium_chrome if ENV['TEST_BROWSER'] != 'chrome'
 
 
 RSpec.configure do |config|
