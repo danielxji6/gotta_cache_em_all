@@ -6,31 +6,36 @@
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS'] %>"></script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <a class="navbar-brand" href="/">Gotta Cache 'Em All</a>
+        <button class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-        </ul>
-        <ul class="nav navbar-nav navbar-right nav-pills">
-        <li role="presentation"><%= link_to "Events", events_path %></li>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "Events", events_path %></li>
           <% if current_user %>
-            <li role="presentation"><%= link_to "Profile", profile_path, id: "profile_link"  %></li>
+            <li><%= link_to "Profile", profile_path, id: "profile_link"  %></li>
             <% if admin? %>
-              <li role="presentation"><%= link_to "Administrators", users_path, id: 'admin_link' %></li>
+              <li><%= link_to "Administrators", users_path, id: 'admin_link' %></li>
             <% end %>
-            <li role="presentation"><%= link_to "Logout", logout_path, id: "logout_link"  %></li>
+            <li><%= link_to "Logout", logout_path, id: "logout_link"  %></li>
           <% else %>
-            <li role="presentation"><%= link_to "Sign Up", signup_path, id: "signup_link" %></li>
-            <li role="presentation"><%= link_to "Login", login_path, id: "login_link" %></li>
+            <li><%= link_to "Sign Up", signup_path, id: "signup_link" %></li>
+            <li><%= link_to "Login", login_path, id: "login_link" %></li>
           <% end %>
 
         </ul>
