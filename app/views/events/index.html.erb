@@ -3,8 +3,8 @@
 <hr>
 	<div class='container'>
 		<div class='col-md-5 col-md-offset-1'>
+		<!-- admin can see all info about the event(pokemon) -->
 			<% if admin? %>
-
 				<% @events.each do |event| %>
 		  		<p>Pokemon name: <%= link_to event.name, event_path(event) %></p>
 		  		<p>Type: <%= event.category %></p>
@@ -12,6 +12,7 @@
 		  		<hr>
 				<% end %>
 			<% else %>
+			<!-- regular users (trainers) can see this -->
 				<% @events.each do |event| %>
 					<p>Coordinates: <%= link_to event.coords, event_path(event) %></p>
 					<hr>

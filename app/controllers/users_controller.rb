@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def create_admin
+	def create_admin 
 		if admin?
 			user = User.find_by(username: params[:username])
 			if user

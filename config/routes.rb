@@ -14,8 +14,6 @@ Rails.application.routes.draw do
   get '/users/:id/delete_team', to: 'users#delete_team', as: 'delete_team'
   post '/users/admin', to: 'users#create_admin'
 
-
-
   get '/login', to: 'sessions#new', as: 'login'
   get '/logout', to: 'sessions#destroy'
   post '/sessions', to: 'sessions#create'

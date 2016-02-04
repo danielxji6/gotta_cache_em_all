@@ -3,19 +3,17 @@ class EventsController < ApplicationController
   before_action :logged_in?, :set_event, only: [:show, :edit, :update]
 
   def index
-    @events = Event.all.order('created_at DESC')
+    @events = Event.all.order('created_at DESC') #newest event (pokemon) first
     current_user
   end
 
   def new
-    if admin?
+    if admin? #checks for admin
       @event = Event.new
-      # loader = Poke::API::Loader.new("pokemon")
-      # i = 1
       @pokemons = []
       File.open('./app/assets/data/pokemon.json').each do |line|
-        data = JSON.parse(line)
-        @pokemons << data
+        data = JSON.parse(line) #opens file and parses to return in JSON
+        @pokemons << data # push to instance variable
       end
     else
       redirect_to events_path
@@ -24,22 +22,19 @@ class EventsController < ApplicationController
 
   def create
     if admin?
-      loader = Poke::API::Loader.new("pokemon")
-
-      poke_number = params[:event][:dex_number]
-      selected_poke = loader.find(poke_number)
-
-      categories = []
-      selected_poke["types"].each do |type|
+        loader = Poke::API::Loader.new("pokemon") #load the api
+        poke_number = params[:event][:dex_number]
+        selected_poke = loader.find(poke_number)
+        categories = []
+        selected_poke["types"].each do |type|
         categories << type["name"].capitalize
       end
-      categories = categories.join(", ")
-
-      @event = Event.new(event_params)
-      @event.name = selected_poke["name"]
-      @event.category = categories
-      @event.image = "https://s3-eu-west-1.amazonaws.com/calpaterson-pokemon/#{poke_number}.jpeg"
-      @event.hash_data = set_hash_data
+        categories = categories.join(", ")
+        @event = Event.new(event_params)
+        @event.name = selected_poke["name"]
+        @event.category = categories
+        @event.image = "https://s3-eu-west-1.amazonaws.com/calpaterson-pokemon/#{poke_number}.jpeg"
+        @event.hash_data = set_hash_data #adds hash data to instance variable
       if @event.save
         redirect_to @event
       else
@@ -63,8 +58,8 @@ class EventsController < ApplicationController
     if admin?
       @pokemons = []
       File.open('./app/assets/data/pokemon.json').each do |line|
-        data = JSON.parse(line)
-        @pokemons << data
+        data = JSON.parse(line) #parse file line by line into JSON
+        @pokemons << data #push to instance variable
       end
     else
       redirect_to events_path
@@ -91,7 +86,7 @@ class EventsController < ApplicationController
     params.require(:event).permit(:dex_number, :coords, :level_min, :level_max, :description)
   end
 
-  def set_hash_data
+  def set_hash_data #takes pokemon name and the coordinates and the string to make a hash
     (@event.name + @event.coords + "WDI25").hash
   end
 
