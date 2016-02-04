@@ -53,6 +53,6 @@ class PokemonsController < ApplicationController
 			redirect_to catch_path(@event.hash_data)
 			flash[:error] = "Invalid user credentials. Please try again."
 		end
-		session[:catch_data] = nil
+		session[:catch_data] = nil #reset 
 	end
 end

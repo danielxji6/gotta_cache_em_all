@@ -2,17 +2,18 @@ console.log("Load!");
 
 var ready_team;
 ready_team = function() {
-
+  // to select item in my team
   $('#my_team .poke').click(function() {
     $('#my_team div').removeClass('switch');
     $(this).addClass('switch');
   });
-
+  // to select item in my backpack
   $('#my_backpack .poke').click(function() {
     $('#my_backpack .poke').removeClass('switch');
     $(this).addClass('switch');
   });
 
+  // function to swap my team and my backpack items
   $('#save').click(function() {
     $.ajax({
       method: 'PATCH',

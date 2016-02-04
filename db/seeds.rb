@@ -6,12 +6,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Pokemon.destroy_all
+User.destroy_all
+Event.destroy_all
+# Hope.destroy_all
 
 user1_data = {
 	full_name: "Test1",
 	email: "t1@t.com",
-	username: "testtest1",
-	password: "123",
+	username: "adminmaster",
+	password: "wdi25teamawesome",
 	admin: true
 }
 user2_data = {

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def create_admin
+	def create_admin 
 		if admin?
 			# Find the user going to be admin by username
 			user = User.find_by(username: params[:username])
