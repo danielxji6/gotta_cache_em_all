@@ -79,3 +79,19 @@ h3{
 	width: auto;
 }
 
+/* Navbar Hamburger menu */
+
+.navbar {
+	border-radius: 0;
+	border: none;
+	margin-bottom: 0;
+}
+
+.nav li {
+	display: inline;
+}
+
+.navbar-inverse .navbar-nav li a:hover {
+	transition: 0.7s all linear;
+	height: 100%;
+}
