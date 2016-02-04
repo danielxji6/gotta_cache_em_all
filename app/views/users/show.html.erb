@@ -17,7 +17,7 @@
 			<div class='row'>
 				<% @team.each do |pokemon| %>
 					<div class='col-sm-2 col-xs-4'>
-						<%= link_to image_tag(pokemon.event.image, size: "100"), pokemon_path(current_user, pokemon) %><br>
+						<%= link_to image_tag(pokemon.event.image, size: "100"), pokemon_path(@user, pokemon) %><br>
 						<p><%= pokemon.event.name %></p>
 					</div>
 				<% end %>
@@ -35,11 +35,11 @@
 		<h2>My Back Pack</h2>
 		<div id="my_backpack">
 			<div class="row">
-				
+
 				<% @pokemons.each do |pokemon| %>
 					<% if !pokemon.team_position %>
 						<div class='col-sm-2 col-xs-3'>
-							<%= link_to image_tag(pokemon.event.image, size: "100"), pokemon_path(current_user, pokemon) %><br>
+							<%= link_to image_tag(pokemon.event.image, size: "100"), pokemon_path(@user, pokemon) %><br>
 							<p><%= pokemon.event.name %></p>
 						</div>
 					<% end %>
