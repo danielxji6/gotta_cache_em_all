@@ -16,6 +16,13 @@
  */
 
 
+.navIcon{
+	position: relative;
+	display: inline-block;
+	top: -15px;
+	left: -5px;
+}
+
 
 .jumbotron{
 	background-image: url('poke_jumbotron2.png');
@@ -24,6 +31,7 @@
 	height: 350px;
 	width:100%;
 	background-repeat: no-repeat;
+	border: 0px solid black;
 
 }
 
