@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 		@user.try(:authenticate, params[:password])
 	end
 
+	#TODO: move any db calls and repetitive code from the resepective controllers to the models and make them methods. We love fat models. -jc
+
 	validates :full_name, :email, :password, presence: true, length: {maximum: 255}
 	validates :username, length: {in: 6..50, message: "must be between 6 and 50 characters"}
 	validates :password, length: { minimum: 3, message: "must be at least 3 characters" }

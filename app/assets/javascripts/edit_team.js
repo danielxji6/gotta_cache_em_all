@@ -1,3 +1,4 @@
+/* TODO: remove debug code from production -jc */
 console.log("Load!");
 
 var ready_team;
@@ -25,10 +26,12 @@ ready_team = function() {
         empty_position: $('#my_team .switch').data("empty-id")
       },
       success: function(response) {
+        /* TODO: remove debug code from production -jc */
         console.log("Save!");
         location.reload();
       },
       error: function(error) {
+        /* TODO: remove debug code from production -jc */
         console.log("ERROR!");
         console.log(error);
       }

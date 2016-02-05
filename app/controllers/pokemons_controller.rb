@@ -1,35 +1,43 @@
 class PokemonsController < ApplicationController
 
 	def index
+		# TODO: please consider adding this db call to your model as a method. -jc
 		@user = User.find_by_id(params[:user_id])
 		@pokemons = @user.pokemons
 	end
 
 	def show
+		# TODO: please consider adding this db call to your model as a method. -jc
 		@user = User.find_by_id(params[:user_id])
+		# TODO: please consider adding this db call to your model as a method. -jc
 		@pokemon = Pokemon.find_by_id(params[:id])
 	end
 
 	def new
 		@hash_data = params[:hash_data]
 		@user = User.new
+		# TODO: please consider adding this db call to your model as a method. -jc
 		@event = Event.find_by(hash_data: @hash_data)
 		# Stores the hash info into the session to redirect from users#new/users#create
 		session[:catch_data] = @hash_data
 	end
 
 	def create
-		
+
 		# Collects hash information to find the corresponding event
+		# TODO: please consider refactoring this code below to become a private method
 		hash_info = params.require(:user).permit(:hash_data)
 		@event = Event.find_by(hash_info)
-		
+
 		# Checks whether the user is already logged in or submitted the login form.
 		if session[:user_id] == nil
+			# TODO: please consider refactoring this code below to become a private method
 			user_params = params.require(:user).permit(:username, :password)
 			@user = User.confirm(user_params)
+			# TODO: remove debugging code from your production versions
 			puts "User:::" + @user.to_s + "         Event:::" + @event.to_s
 		else
+			# TODO: please consider adding this db call to your model as a method. -jc
 			@user = User.find_by_id(session[:user_id])
 		end
 
@@ -37,6 +45,9 @@ class PokemonsController < ApplicationController
 		if @user && @event
 			login(@user)
 			# Checks to see if the user has not already collected the event.
+			# TODO: please consider adding this db call to your model as a method. -jc
+			# ex: if poke_caught?
+			# ex then poke_create
 			if Pokemon.where(user_id: @user.id, event_id: @event.id).length == 0
 				poke = Pokemon.create(level: rand(@event.level_min..@event.level_max))
 				@user.pokemons << poke
@@ -53,6 +64,6 @@ class PokemonsController < ApplicationController
 			redirect_to catch_path(@event.hash_data)
 			flash[:error] = "Invalid user credentials. Please try again."
 		end
-		session[:catch_data] = nil #reset 
+		session[:catch_data] = nil #reset
 	end
 end

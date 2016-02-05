@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def create_admin 
+	def create_admin
 		if admin?
 			# Find the user going to be admin by username
 			user = User.find_by(username: params[:username])
@@ -55,6 +55,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		# TODO: consider adding the below code to your User model as a method
 		# Find all the pokemons for the user
 		@pokemons = @user.pokemons
 		# Select pokemon in the team
@@ -64,6 +65,7 @@ class UsersController < ApplicationController
 	end
 
 	def edit
+		# TODO: consider adding the below code to your User model as a method
 		if @user == current_user
 		@pokemons = @user.pokemons
 		@team = @pokemons
@@ -76,6 +78,7 @@ class UsersController < ApplicationController
 
 	def update
 		# Set pkoe1 to the pokemon selete from team or use the empty id
+		# TODO: consider adding the below db call to your User model as a method
 		poke1 = Pokemon.find_by_id(params[:team_poke]) || params[:empty_position]
 		poke2 = Pokemon.find_by_id(params[:backpack_poke])
 

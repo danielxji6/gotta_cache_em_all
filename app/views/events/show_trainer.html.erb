@@ -7,8 +7,9 @@
 		<p><strong>Description: </strong><%= @event.description %></p>
 		<%= link_to "Back", events_path %>
 	</div>
-	
+
 		<!-- google maps -->
+		<!-- TODO: in-line style... just don't -jc -->
 		<div class='map-container col-md-5' style="height:450px; width:450px;">
 			<div id="map"></div>
 			<div class="event_coords" data-coords="<%= @event.coords %>"></div>

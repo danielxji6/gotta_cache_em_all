@@ -3,7 +3,7 @@
 	<!-- QR code -->
 	<%= image_tag "https://api.qrserver.com/v1/create-qr-code/?data=http%3A//cachemon.herokuapp.com/catch/#{@event.hash_data}&amp;size=200x200" %><br>
 	<hr>
-		
+
 	<!-- event (pokemon) -->
 	<div class="col-md-5 col-md-offset-1">
 		<h2><%= @event.name%></h2>
@@ -18,11 +18,12 @@
 		  <%= @event.level_max %>
 		</p>
 
-		<%= link_to "Edit", edit_event_path %> | 
+		<%= link_to "Edit", edit_event_path %> |
 		<%= link_to "Back", events_path %>
 	</div>
-	
+
 		<!-- google map -->
+		<!-- TODO: in-line style... just don't -jc -->
 		<div class='map-container col-md-5' style="height:450px; width:450px;">
 			<div id="map"></div>
 			<div class="event_coords" data-coords="<%= @event.coords %>"></div>

@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
 	end
 
 	def create
+		# TODO: turn this below into a private method
 		user_params = params.require(:user).permit(:username, :password)
 		@user = User.confirm(user_params)
 		if @user

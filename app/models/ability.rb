@@ -1,3 +1,5 @@
+# TODO: is this being used? -jc
+
 class Ability
   # include CanCan::Ability
 
