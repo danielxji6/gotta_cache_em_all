@@ -1,6 +1,8 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.switch {
-  background-color: pink,
+.switch img {
+  background: url('../images/pokeball-bg.png');
+	background-size: cover;
+	outline: 2px dotted pink;
 }
