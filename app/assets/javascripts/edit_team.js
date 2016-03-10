@@ -1,4 +1,4 @@
-console.log("Load!");
+
 
 var ready_team;
 ready_team = function() {

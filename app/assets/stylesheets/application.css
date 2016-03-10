@@ -15,6 +15,12 @@
  *= require_self
  */
 
+@media (max-width: 768px) {
+ .jumbotron{
+ 		background-size: 150%, 150%;
+ }
+}
+
 
 .navIcon{
 	position: relative;
