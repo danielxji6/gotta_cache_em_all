@@ -34,6 +34,11 @@ This app allows users to scan a QR-code in a physical location and redirects the
 ![My pokeTeam] (http://i.imgur.com/hLvKeRb.png)
 ![Events] (http://i.imgur.com/wDw0dXi.png)
 
+##Testing
+* Using Rspec, Capybara, FactoryGirl, and SimpleCov
+* To run the test ```$ rspec spec```
+
+
 ##Wish List / Future Development
 * Battle Feature
 * Additional cities
