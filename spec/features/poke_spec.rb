@@ -22,6 +22,29 @@ describe 'catch pokemon' do
   end
 end
 
+describe 'Show pokemon' do
+
+  let!(:event) { FactoryGirl.create(:event) }
+  let!(:user) { FactoryGirl.create(:user) }
+
+  before do
+    visit '/login'
+    fill_in 'user_username', with: user.username
+    fill_in 'user_password', with: user.password
+    click_button 'Login'
+    visit catch_path(event.hash_data)
+    click_button 'Catch'
+  end
+
+  it 'on user page' do
+    page.all('#my_backpack .row div')[0].click
+
+    expect(page).to have_content(event.name)
+    expect(page.current_path).to match(/users\/\d+?\/pokemons\/\d+?$/)
+  end
+
+end
+
 describe 'show pokemons and edit team' do
 
   let!(:event0) { FactoryGirl.create(:event) }
