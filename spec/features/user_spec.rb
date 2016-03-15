@@ -3,7 +3,7 @@ require 'rails_helper'
 
 describe 'Creating a new user' do
 
-  let(:user0) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user) }
   before { visit '/signup' }
 
   it 'shows a form for creating a user' do
@@ -24,9 +24,9 @@ describe 'Creating a new user' do
   context 'when username or email duplicate' do
     it 'displays an error message' do
       fill_in 'user_full_name', with: 'Mr. Meeseeks'
-      fill_in 'user_username', with: user0.username
-      fill_in 'user_email', with: user0.email
-      fill_in 'user_password', with: '123'
+      fill_in 'user_username', with: user.username
+      fill_in 'user_email', with: user.email
+      fill_in 'user_password', with: user.password
       click_button 'Sign up'
       expect(page.find('.alert-danger')).to have_content 'Username has already been take'
       expect(page.find('.alert-danger')).to have_content 'Email has already been taken'
@@ -36,7 +36,7 @@ end
 
 describe 'Creating login session for user' do
 
-  let(:user1) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user) }
   before { visit '/login' }
 
   it 'shows a form for login' do
@@ -44,8 +44,8 @@ describe 'Creating login session for user' do
   end
 
   it 'login the user' do
-    fill_in 'user_username', with: user1.username
-    fill_in 'user_password', with: '123'
+    fill_in 'user_username', with: user.username
+    fill_in 'user_password', with: user.password
     click_button 'Login'
 
     expect(page.current_path).to match(/events/)
@@ -64,29 +64,28 @@ end
 
 describe 'Destory login session' do
 
-  let(:user2) { FactoryGirl.create(:user) }
-  before do
-    visit '/login'
-    fill_in 'user_username', with: user2.username
-    fill_in 'user_password', with: '123'
-    click_button 'Login'
-  end
-
+  let(:user) { FactoryGirl.create(:user) }
   it 'logout user' do
+    visit '/login'
+    fill_in 'user_username', with: user.username
+    fill_in 'user_password', with: user.password
+    click_button 'Login'
     page.find('#logout_link').click
 
-    expect(page.current_path).to match(root_path)
+    expect(page.find('#login_link')).to have_content 'Login'
+
   end
 end
 
-describe 'Adding new admin as admin' do
+describe 'Adding or removing new admin as admin' do
 
-  let(:user3) { FactoryGirl.create(:user) }
-  let(:admin) { FactoryGirl.create(:admin) }
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:admin) { FactoryGirl.create(:admin) }
+
   before do
     visit '/login'
     fill_in 'user_username', with: admin.username
-    fill_in 'user_password', with: '123'
+    fill_in 'user_password', with: admin.password
     click_button 'Login'
     visit '/users'
   end
@@ -95,14 +94,26 @@ describe 'Adding new admin as admin' do
     expect(page).to have_css('form')
   end
 
-  it 'can add other user as admin' do
-    fill_in 'username', with: user3.username
+  it 'can add and remove other user as admin' do
+    # Add
+    fill_in 'username', with: user.username
     click_button 'Save/Remove Admin'
 
-    expect(page.current_path).to match(/users/)
-
     expect(page.find('.alert-success')).to have_content 'Successfully added admin.'
-    expect(page).to have_content user3.username
+    expect(page).to have_content user.username
+
+    # remove
+    fill_in 'username', with: user.username
+    click_button 'Save/Remove Admin'
+
+    expect(page.find('.alert-success')).to have_content 'Successfully removed admin.'
+  end
+
+  it 'will not add a wrong username' do
+    fill_in 'username', with: 'SuperAdmin'
+    click_button 'Save/Remove Admin'
+
+    expect(page.find('.alert-danger')).to have_content 'User not found, please try again.'
   end
 
 end
