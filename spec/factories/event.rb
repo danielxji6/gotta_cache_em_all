@@ -1,6 +1,14 @@
 FactoryGirl.define do
   factory :event, class: Event do
-  	name { "Pikachu" }
+
+    sequence :name do |n|
+      "Pikachu#{n}"
+    end
+
+    sequence :hash_data do |n|
+      "hash#{n}"
+    end
+
   	coords { "123,123" }
   	category { "Electric" }
   	dex_number { 25 }
@@ -8,6 +16,5 @@ FactoryGirl.define do
   	image { "https://s3-eu-west-1.amazonaws.com/calpaterson-pokemon/25.jpeg" }
   	level_min { 10 }
   	level_max { 20 }
-  	hash_data { "22222" }
   end
 end
