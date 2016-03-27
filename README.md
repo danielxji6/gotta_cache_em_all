@@ -19,11 +19,18 @@ This app allows users to scan a QR-code in a physical location and redirects the
 * CSS/SaSS
 * JavaScript
 * Ruby
-
+* SQL
 
 ###External Libraries/ Frameworks
 * Bootstrap
 * jQuery
+* Bcrypt
+* Factory Girl
+* Rspec
+* Capybara
+
+###Database
+* Postgres
 
 ###APIs
 * PokeAPI
